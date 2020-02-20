@@ -1,0 +1,57 @@
+{
+  "_from": "git+https://github.com/postillonmedia/react-native-instagram-zoomable.git",
+  "_id": "@postillon/react-native-instagram-zoomable@1.0.1",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/@postillon/react-native-instagram-zoomable",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "@postillon/react-native-instagram-zoomable@git+https://github.com/postillonmedia/react-native-instagram-zoomable.git",
+    "name": "@postillon/react-native-instagram-zoomable",
+    "escapedName": "@postillon%2freact-native-instagram-zoomable",
+    "scope": "@postillon",
+    "rawSpec": "git+https://github.com/postillonmedia/react-native-instagram-zoomable.git",
+    "saveSpec": "git+https://github.com/postillonmedia/react-native-instagram-zoomable.git",
+    "fetchSpec": "https://github.com/postillonmedia/react-native-instagram-zoomable.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/postillonmedia/react-native-instagram-zoomable.git#25657fe2cb523817a833002da13405af97a52850",
+  "_spec": "@postillon/react-native-instagram-zoomable@git+https://github.com/postillonmedia/react-native-instagram-zoomable.git",
+  "_where": "/Users/josef/Documents/desenvolvimento/nossogrupo-app",
+  "author": {
+    "name": "Daniel Lang"
+  },
+  "bugs": {
+    "url": "https://github.com/postillonmedia/react-native-instagram-zoomable/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A component to implement the Instagram Zoom-Draggable-Effect for any component in React-Native",
+  "homepage": "https://github.com/postillonmedia/react-native-instagram-zoomable#readme",
+  "keywords": [
+    "react-native",
+    "instagram",
+    "zoomable",
+    "drag",
+    "zoom",
+    "draggable",
+    "wrapper"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "@postillon/react-native-instagram-zoomable",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/postillonmedia/react-native-instagram-zoomable.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.1"
+}
