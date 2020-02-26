@@ -89,18 +89,17 @@ export class SelectedElement extends PureComponent {
                 alignSelf: 'center',
                 width: selected.measurement.w,
                 height: selected.measurement.h,
-                opacity: parseFloat(JSON.stringify(animatedStyle.transform[1].translateY)) === 0  ? 0 : 1
-                
+                opacity: parseFloat(JSON.stringify(animatedStyle.transform[1].translateY)) === 0  ? 0 : 1,
             },
             animatedStyle,
         ];
 
         parseFloat(JSON.stringify(animatedStyle.transform[1].translateY)) === 0 && setTimeout(() => {
             this.forceUpdate()
-        }, 50);
+        }, 10);
 
         let children = selected && selected.element && selected.element.props && selected.element.props.children;
-
+console.log(animatedStyle.transform[1].translateY)
         return (
             <View style={styles.root}>
                 { renderBackground(selected, scaleValue, gesturePosition) }

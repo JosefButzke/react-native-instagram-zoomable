@@ -139,17 +139,17 @@ export class ElementContainer extends PureComponent {
             x: 0,
             y: 0,
         });
-
+       
         gesturePosition.setOffset({
             x: 0,
             y: ( this._selectedMeasurement &&  this._selectedMeasurement.y) || 0,
         });
-        
-        Animated.timing(this._opacity, {
-            toValue: 0,
-            duration: 200,
-        }).start();
-        
+
+        // Animated.timing(this._opacity, {
+        //     toValue: 0,
+        //     duration: 20,
+        // }).start();
+        this._opacity = new Animated.setValue(0);
     };
 
     _onGestureMove = (event: Event, gestureState: GestureState) => {
