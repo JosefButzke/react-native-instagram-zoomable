@@ -145,11 +145,15 @@ export class ElementContainer extends PureComponent {
             y: ( this._selectedMeasurement &&  this._selectedMeasurement.y) || 0,
         });
 
-        // Animated.timing(this._opacity, {
-        //     toValue: 0,
-        //     duration: 20,
-        // }).start();
-        this._opacity = new Animated.setValue(0);
+        setTimeout(() => {
+            Animated.timing(this._opacity, {
+                toValue: 0,
+                duration: RESTORE_ANIMATION_DURATION,
+                easing: Easing.ease,
+                useNativeDriver: true,
+            }).start();
+        }, 100);
+       
     };
 
     _onGestureMove = (event: Event, gestureState: GestureState) => {

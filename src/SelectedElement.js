@@ -99,7 +99,7 @@ export class SelectedElement extends PureComponent {
         }, 10);
 
         let children = selected && selected.element && selected.element.props && selected.element.props.children;
-console.log(animatedStyle.transform[1].translateY)
+
         return (
             <View style={styles.root}>
                 { renderBackground(selected, scaleValue, gesturePosition) }
