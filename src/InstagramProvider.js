@@ -90,12 +90,11 @@ export class InstagramProvider extends PureComponent {
     };
 
     renderSelectedElement = () => {
-        const { renderBackground } = this.props;
+        const { renderBackground, detail } = this.props;
         const { isDragging, selected } = this.state;
-        
 
         if (isDragging) {
-            return <SelectedElement selected={selected} renderBackground={renderBackground} height={height} />;
+            return <SelectedElement selected={selected} renderBackground={renderBackground} detail={detail} />;
         } else {
             return null;
         }

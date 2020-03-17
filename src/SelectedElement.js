@@ -23,19 +23,18 @@ const styles = StyleSheet.create({
 });
 
 export class SelectedElement extends PureComponent {
-
     static propTypes = {
         selected: PropTypes.object,
         renderBackground: PropTypes.func,
     };
-
+    
     static defaultProps = {};
-
+    
     static contextTypes = {
         gesturePosition: PropTypes.object,
         scaleValue: PropTypes.object,
     };
-
+    
     constructor() {
         super(...arguments);
     }
@@ -60,24 +59,13 @@ export class SelectedElement extends PureComponent {
     };
 
     render() {
-        let { selected, renderBackground = this.renderBackground, height, show } = this.props;
+        let { selected, renderBackground = this.renderBackground, detail } = this.props;
         let { gesturePosition, scaleValue } = this.context;
   
         let animatedStyle = {
             transform: gesturePosition.getTranslateTransform(),
         };
 
-        // if (Platform.OS === 'ios') {
-        //     JSON.stringify(Object.values(animatedStyle.transform[1])[0]) === '0' && (animatedStyle.transform[1].translateY = (200));
-        // }
-        // if (JSON.stringify(Object.values(animatedStyle.transform[1])[0]) === '0') {
-        //     return (
-        //         <View />
-        //     )
-        // }
-
-        // JSON.stringify(Object.values(animatedStyle.transform[1])[0]) === '0' ? this.forceUpdate() : null
-      
         animatedStyle.transform.push({
             scale: scaleValue,
         });
@@ -85,7 +73,7 @@ export class SelectedElement extends PureComponent {
         let elementStyle = [
             {
                 position: 'relative',
-                top: Platform.OS === 'ios' ? -78 : - (Dimensions.get('window').height / 10.078740157480315),
+                top: Platform.OS === 'ios' ? -78 : detail ? -25 : -(Dimensions.get('window').height / 10.078740157480315),
                 alignSelf: 'center',
                 width: selected.measurement.w,
                 height: selected.measurement.h,
@@ -99,7 +87,7 @@ export class SelectedElement extends PureComponent {
         }, 10);
 
         let children = selected && selected.element && selected.element.props && selected.element.props.children;
-
+        
         return (
             <View style={styles.root}>
                 { renderBackground(selected, scaleValue, gesturePosition) }

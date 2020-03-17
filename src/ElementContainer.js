@@ -82,6 +82,7 @@ export class ElementContainer extends PureComponent {
         return (
             <Animated.View
                 collapsable={false}
+                detail={true}
                 style={[styles.container, style, {
                     opacity: this._opacity
                 }]}
