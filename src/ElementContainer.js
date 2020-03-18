@@ -78,7 +78,7 @@ export class ElementContainer extends PureComponent {
 
     render() {
         const { children, style } = this.props;
-       
+
         return (
             <Animated.View
                 collapsable={false}
@@ -130,17 +130,17 @@ export class ElementContainer extends PureComponent {
         this._initialTouches = touches;
 
         this._selectedMeasurement = await this._measureSelected();
-       
+
         onGestureStart({
             element: this,
             measurement:  this._selectedMeasurement,
         });
-        
+
         gesturePosition.setValue({
             x: 0,
             y: 0,
         });
-       
+
         gesturePosition.setOffset({
             x: 0,
             y: ( this._selectedMeasurement &&  this._selectedMeasurement.y) || 0,
@@ -154,7 +154,7 @@ export class ElementContainer extends PureComponent {
                 useNativeDriver: true,
             }).start();
         }, 100);
-       
+
     };
 
     _onGestureMove = (event: Event, gestureState: GestureState) => {
@@ -172,9 +172,26 @@ export class ElementContainer extends PureComponent {
         // for moving photo around
         let { gesturePosition, scaleValue } = this.context;
         let { dx, dy } = gestureState;
+
+        let posX = dx;
+        let posY = dy;
         
-        gesturePosition.x.setValue(dx);
-        gesturePosition.y.setValue(dy);
+        //ajuste eixo X
+        if(this._initialTouches[0].locationX <= 180)
+            posX = dx - (((this._initialTouches[0].locationX * scaleValue._value)-(150 * scaleValue._value))/2 );
+        if(this._initialTouches[0].locationX > 180)
+            posX = dx - (((this._initialTouches[0].locationX * scaleValue._value)-(150 * scaleValue._value))/2 );
+
+        //ajuste eixo Y
+        if(this._initialTouches[0].locationY <= 160)
+            posY = dy - (((this._initialTouches[0].locationY * scaleValue._value)-(180 * scaleValue._value))/2 );
+        if(this._initialTouches[0].locationY > 160)
+            posY = dy - (((this._initialTouches[0].locationY * scaleValue._value)-(180 * scaleValue._value))/2 );
+
+
+        gesturePosition.x.setValue(posX);
+
+        gesturePosition.y.setValue(posY);
 
         // for scaling photo
         let currentDistance = getDistance(touches);
@@ -224,7 +241,7 @@ export class ElementContainer extends PureComponent {
                 onGestureRelease();
             });
         });
-        
+
         scaleValue.setValue(1.0);
     };
 

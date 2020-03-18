@@ -41,8 +41,8 @@ export class SelectedElement extends PureComponent {
 
     renderBackground = (selected, scaleValue, gesturePosition) => {
         let backgroundOpacityValue = scaleValue.interpolate({
-            inputRange: [1.2, 3],
-            outputRange: [0, 0.6],
+            inputRange: [1, 3],
+            outputRange: [0, 1],
         });
 
         return (
