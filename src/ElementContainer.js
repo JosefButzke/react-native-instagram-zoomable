@@ -146,14 +146,12 @@ export class ElementContainer extends PureComponent {
             y: ( this._selectedMeasurement &&  this._selectedMeasurement.y) || 0,
         });
 
-        setTimeout(() => {
-            Animated.timing(this._opacity, {
-                toValue: 0,
-                duration: RESTORE_ANIMATION_DURATION,
-                easing: Easing.ease,
-                useNativeDriver: true,
-            }).start();
-        }, 100);
+        Animated.timing(this._opacity, {
+            toValue: 0,
+            duration: RESTORE_ANIMATION_DURATION,
+            easing: Easing.ease,
+            useNativeDriver: true,
+        }).start();
 
     };
 
@@ -172,26 +170,35 @@ export class ElementContainer extends PureComponent {
         // for moving photo around
         let { gesturePosition, scaleValue } = this.context;
         let { dx, dy } = gestureState;
-
         let posX = dx;
         let posY = dy;
-        
-        //ajuste eixo X
-        if(this._initialTouches[0].locationX <= 180)
-            posX = dx - (((this._initialTouches[0].locationX * scaleValue._value)-(150 * scaleValue._value))/2 );
-        if(this._initialTouches[0].locationX > 180)
-            posX = dx - (((this._initialTouches[0].locationX * scaleValue._value)-(150 * scaleValue._value))/2 );
 
-        //ajuste eixo Y
-        if(this._initialTouches[0].locationY <= 160)
-            posY = dy - (((this._initialTouches[0].locationY * scaleValue._value)-(180 * scaleValue._value))/2 );
-        if(this._initialTouches[0].locationY > 160)
-            posY = dy - (((this._initialTouches[0].locationY * scaleValue._value)-(180 * scaleValue._value))/2 );
+        const locationX = new Animated.Value(this._initialTouches[0].locationX);
+        const locationY = new Animated.Value(this._initialTouches[0].locationY);
+
+        const width = Dimensions.get('screen').width;
+        const height = Dimensions.get('screen').height;
+
+        let paddingX = new Animated.Value(1);
+        let paddingY = new Animated.Value(1);
+
+        // ajuste eixo X
+        if(scaleValue._value > 1.05){
+            paddingX = locationX.interpolate({
+                inputRange: [0, width],
+                outputRange: [- width/2 + 130, width/2 - 130]
+            });
+
+            paddingY = locationY.interpolate({
+                inputRange: [0, height],
+                outputRange: [80, -230]
+            });
+        }
 
 
-        gesturePosition.x.setValue(posX);
+        gesturePosition.x.setValue(dx + (-1 * parseFloat(JSON.stringify(paddingX)) * (scaleValue._value * scaleValue._value)));
 
-        gesturePosition.y.setValue(posY);
+        gesturePosition.y.setValue(dy + parseFloat(JSON.stringify(paddingY)) * scaleValue._value);
 
         // for scaling photo
         let currentDistance = getDistance(touches);
