@@ -196,7 +196,7 @@ export class ElementContainer extends PureComponent {
         }
 
 
-        gesturePosition.x.setValue(dx + (-1 * parseFloat(JSON.stringify(paddingX)) * (scaleValue._value * scaleValue._value)));
+        gesturePosition.x.setValue(dx + (-1 * parseFloat(JSON.stringify(paddingX)) * (scaleValue._value * scaleValue._value * 0.7)));
 
         gesturePosition.y.setValue(dy + parseFloat(JSON.stringify(paddingY)) * scaleValue._value);
 
