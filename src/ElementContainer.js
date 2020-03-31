@@ -204,7 +204,8 @@ export class ElementContainer extends PureComponent {
         let currentDistance = getDistance(touches);
         let initialDistance = getDistance(this._initialTouches);
         let newScale = getScale(currentDistance, initialDistance);
-        scaleValue.setValue(newScale < 1.0 ? 1.0 : newScale);
+        
+        scaleValue.setValue(newScale < 1.0 ? 1.0 : newScale > 2.5 ? 2.5 : newScale);
     };
 
     _onGestureRelease = (event, gestureState: GestureState) => {
