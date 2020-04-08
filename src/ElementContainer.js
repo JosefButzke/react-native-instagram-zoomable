@@ -170,8 +170,6 @@ export class ElementContainer extends PureComponent {
         // for moving photo around
         let { gesturePosition, scaleValue } = this.context;
         let { dx, dy } = gestureState;
-        let posX = dx;
-        let posY = dy;
 
         const locationX = new Animated.Value(this._initialTouches[0].locationX);
         const locationY = new Animated.Value(this._initialTouches[0].locationY);
@@ -185,7 +183,7 @@ export class ElementContainer extends PureComponent {
         // ajuste eixo X
         if(scaleValue._value > 1.05){
             paddingX = locationX.interpolate({
-                inputRange: [0, width],
+                inputRange: [-50, width],
                 outputRange: [- width/2 + 130, width/2 - 130]
             });
 
@@ -196,7 +194,7 @@ export class ElementContainer extends PureComponent {
         }
 
 
-        gesturePosition.x.setValue(dx + (-1 * parseFloat(JSON.stringify(paddingX)) * (scaleValue._value * scaleValue._value)));
+        gesturePosition.x.setValue(dx + (-1 * parseFloat(JSON.stringify(paddingX)) * (scaleValue._value * scaleValue._value * 0.7)));
 
         gesturePosition.y.setValue(dy + parseFloat(JSON.stringify(paddingY)) * scaleValue._value);
 
@@ -204,7 +202,8 @@ export class ElementContainer extends PureComponent {
         let currentDistance = getDistance(touches);
         let initialDistance = getDistance(this._initialTouches);
         let newScale = getScale(currentDistance, initialDistance);
-        scaleValue.setValue(newScale < 1.0 ? 1.0 : newScale);
+
+        scaleValue.setValue(newScale < 1.0 ? 1.0 : newScale > 2.5 ? 2.5 : newScale);
     };
 
     _onGestureRelease = (event, gestureState: GestureState) => {

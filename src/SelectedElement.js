@@ -69,11 +69,11 @@ export class SelectedElement extends PureComponent {
         animatedStyle.transform.push({
             scale: scaleValue,
         });
-
+console.log
         let elementStyle = [
             {
                 position: 'relative',
-                top: Platform.OS === 'ios' ? -78 : detail ? -25 : -(Dimensions.get('window').height / 10.078740157480315),
+                top: Platform.OS === 'ios' ? detail ? -35 : -78 : detail ? -25 : -(Dimensions.get('window').height / 10.078740157480315),
                 alignSelf: 'center',
                 width: selected.measurement.w,
                 height: selected.measurement.h,
